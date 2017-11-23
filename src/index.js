@@ -8,7 +8,7 @@
 function returnFirstArgument(arg) {	
 	return arg;
 }
-console.log(returnFirstArgument('Поехали :)'));
+
 /*
  Задание 2:
 
@@ -19,7 +19,7 @@ function defaultParameterValue(a, b) {
 	var b = b || 100;
 	return a + b;	
 }
-console.log(defaultParameterValue(40));
+
 /*
  Задание 3:
 
@@ -27,13 +27,10 @@ console.log(defaultParameterValue(40));
  Количество переданных аргументов заранее неизвестно
  */
 function returnArgumentsArray() {
-	var arr = [];
-	for (var i = 0; i < arguments.length; i++) {
-		arr[i] = arguments[i];
-	}
-	return arr;
+
+	return [].slice.call(arguments);
 }
-console.log(returnArgumentsArray('a', 'b', 'c', 'd'));
+
 /*
  Задание 4:
 
@@ -41,7 +38,7 @@ console.log(returnArgumentsArray('a', 'b', 'c', 'd'));
  */
 
 function returnFnResult(fn) { 
-	return Fun(); 
+	return fn(); 
 } 
 function Fun() { 
  	var arr = [2,4,6], sum = 0; 
@@ -49,7 +46,6 @@ function Fun() {
  		sum +=arr[i]; 
  	} return sum; 
 }
-console.log(returnFnResult(Fun));
 
 
 /*
@@ -63,14 +59,11 @@ function returnCounter(number) {
 	var number = number || 0;
 
 	return function() {
-		return number++;
+		return ++number;
 	};
 };
 
 var result = returnCounter(7);
-console.log( result() );
-console.log( result() );
-console.log( result() )
 
 /*
  Задание 6 *:
@@ -78,25 +71,24 @@ console.log( result() )
  Функция должна принимать другую функцию (F) и некоторое количество дополнительных аргументов
  Функция должна привязать переданные аргументы к функции F и вернуть получившуюся функцию
  */
-function bindFunction(fn, context) {
 
-	return function() {
-		return fn.apply(context, arguments);
-	};
+function bindFunction(fn) {
+
+	var args = [].slice.call(arguments);
+
+    args.filter(function( item,index ) {
+    	if(index) {
+    		fn = fn.bind(this, item);
+    	}
+    })
+  	return fn;
+
 }
-var user = {
-	firstName: 'Пока!',
-	sayHi: function() {
-		console.log(this.firstName);
-	}
-}
-var bound = bindFunction(user.sayHi, user);
-bound();
 
 
 export {
     returnFirstArgument,
-     defaultParameterValue,
+    defaultParameterValue,
     returnArgumentsArray,
     returnFnResult,
     returnCounter,

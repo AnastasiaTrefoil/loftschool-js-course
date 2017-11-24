@@ -5,8 +5,9 @@
 
  Функция должна принимать один аргумент и возвращать его
  */
-function returnFirstArgument(arg) {	
-	return arg;
+
+function returnFirstArgument(arg) {
+    return arg;
 }
 
 /*
@@ -15,9 +16,13 @@ function returnFirstArgument(arg) {
  Функция должна принимать два аргумента и возвращать сумму переданных значений
  Значение по умолчанию второго аргумента должно быть 100
  */
+
 function defaultParameterValue(a, b) {
-	var b = b || 100;
-	return a + b;	
+    if ( b === undefined) {
+        b = 100;
+    }
+
+    return a + b;
 }
 
 /*
@@ -26,12 +31,16 @@ function defaultParameterValue(a, b) {
  Функция должна возвращать все переданные в нее аргументы в виде массива
  Количество переданных аргументов заранее неизвестно
  */
+
 function returnArgumentsArray() {
-	var arr = [];
-	for (var i = 0; i < arguments.length; i++) {
-		arr[i] = arguments[i];
-	}
-	return arr;
+
+    var arr = [];
+
+    for (var i = 0; i < arguments.length; i++) {
+        arr[i] = arguments[i];
+    }
+
+    return arr;
 }
 
 /*
@@ -41,13 +50,19 @@ function returnArgumentsArray() {
  */
 
 function returnFnResult(fn) { 
-	return fn(); 
-} 
-function Fun() { 
- 	var arr = [2,4,6], sum = 0; 
- 	for (var i =0 ; i< arr.length; i++) { 
- 		sum +=arr[i]; 
- 	} return sum; 
+    return fn();
+}
+
+function Fun() {
+
+    var arr = [2, 4, 6], 
+        sum = 0;
+
+    for (var i = 0 ; i < arr.length; i++) {
+        sum += arr[i];
+    }
+
+    return sum;
 }
 
 /*
@@ -56,14 +71,17 @@ function Fun() {
  Функция должна принимать число (значение по умолчанию - 0) и возвращать функцию (F)
  При вызове F, переданное число должно быть увеличено на единицу и возвращено из F
  */
-function returnCounter(number) {
-	
-	var number = number || 0;
 
-	return function() {
-		return ++number;
-	};
-};
+function returnCounter(number) {
+
+    if ( number === undefined) {
+        number = 0;
+    }
+
+    return function() {
+        return ++number;
+    };
+}
 
 /*
  Задание 6 *:
@@ -72,17 +90,18 @@ function returnCounter(number) {
  Функция должна привязать переданные аргументы к функции F и вернуть получившуюся функцию
  */
 
-
 function bindFunction(fn) {
-    for(var i = 1; i < arguments.length; i++){
-      fn = fn.bind(this, arguments[i]);
+
+    for (var i = 1; i < arguments.length; i++) {
+        fn = fn.bind(this, arguments[i]);
     }
+
     return fn;
 }
 
 export {
     returnFirstArgument,
-     defaultParameterValue,
+    defaultParameterValue,
     returnArgumentsArray,
     returnFnResult,
     returnCounter,

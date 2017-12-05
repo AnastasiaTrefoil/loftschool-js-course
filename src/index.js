@@ -79,7 +79,10 @@ function getEnumProps(obj) {
     let propArr = [];
 
     for ( let prop in obj) {
-    	propArr.push(prop);
+
+        if (obj.hasOwnProperty(prop)) {
+            propArr.push(prop);
+        }
     }
 
     return propArr;
@@ -91,14 +94,16 @@ function getEnumProps(obj) {
  */
 function upperProps(obj) {
 
-	let propArr = [];
+    let propArr = [];
 
     for ( let prop in obj) {
-    	propArr.push(prop.toUpperCase());
+
+        if (obj.hasOwnProperty(prop)) {
+            propArr.push(prop.toUpperCase());
+        }
     }
 
     return propArr;
-
 
 }
 
@@ -111,9 +116,42 @@ function slice(array, from, to) {
 
     let newArr = [];
 
-    from = from === undefined ? 0 : (typeof from !== 'number' ? 0 : (from < 0 ? (array.length + from < 0 ? 0 : array.length + from) : from));
+    from = from || 0;
+    to = to === undefined ? array.length : to;
 
-    to = to === undefined ? array.length : (typeof to  === 'number' ? (to < 0 ? array.length + to : (to > array.length ? array.length : to)) : '');
+    if ( typeof from !== 'number' ) {
+
+        from = 0;
+
+    } else {
+
+        if ( from < 0 ) {
+
+            if ( array.length + from < 0 ) {
+
+                from = 0;
+
+            } else {
+
+                from = array.length + from;
+
+            }
+        } else {
+            from;
+        }
+    }
+
+    if (typeof to === 'number') {
+
+        if (to < 0) {
+
+            to = array.length + to;
+
+        } else if ( to > array.length ) {
+
+            to = array.length;
+        }
+    } 
 
     if (to !== '') {
     
@@ -122,8 +160,7 @@ function slice(array, from, to) {
         }
     }
 
-	return newArr;
-
+    return newArr;
 }
 
 /*
@@ -136,6 +173,7 @@ function createProxy(obj) {
     let proxy = new Proxy(obj, {
         set (target, prop, value) {
             target[prop] = value * value;
+
             return true;
         }
     });    

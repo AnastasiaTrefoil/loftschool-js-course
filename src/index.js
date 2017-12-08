@@ -174,7 +174,7 @@ function collectDOMStat(root) {
 
         tags: {},
         classes: {},
-        txt: 0
+        texts: 0
     };
 
     function addProperty(obj, prop) {
@@ -188,7 +188,7 @@ function collectDOMStat(root) {
     function findTxtNode(value) {
 
         if (value.nodeType === 3) {
-            result.txt++;
+            result.texts++;
         }
     }
 

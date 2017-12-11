@@ -44,10 +44,9 @@ function loadAndSortTowns() {
 
                 return (a.name < b.name) ? -1 : val;
             })
-
             resolve(townList);
-        });
-    });
+        })
+    })
 
 }
 

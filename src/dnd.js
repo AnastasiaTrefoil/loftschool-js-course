@@ -35,10 +35,10 @@ function createDiv() {
         return '#' + Math.floor(Math.random() * 16777215).toString(16);
     }
 
-    let widthSise = SetRandomSize(10, 500);
-    let heightSise = SetRandomSize(100, 500);
-    let top = SetRandomSize(50, 200);
-    let left = SetRandomSize(50, 500);
+    let widthSise = SetRandomSize(10, 500); // set thw max and min value for width
+    let heightSise = SetRandomSize(100, 500); // set thw max and min value for height
+    let top = SetRandomSize(50, 200); // set thw max and min value for top position
+    let left = SetRandomSize(50, 500); // set thw max and min value left position
 
     newDiv.classList.add('draggable-div');
     newDiv.style.position = 'relative';

@@ -45,7 +45,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^2.0.6",
     "mocha": "^4.0.1",
-    "puppeteer": "^0.13.0",
+    "puppeteer": "^1.13.0",
     "webpack-dev-server": "^2.9.4"
   }
 }
